@@ -30,6 +30,7 @@ dependencies = [
     "transformers>=4.57.1",
     "tqdm",
     "ipykernel>=7.0.1",
+    "datasets>=3.0.0",
 ]
 
 [project.optional-dependencies]

@@ -14,3 +14,4 @@ torch
 torchaudio
 tqdm
 transformers>=4.57.1
+datasets>=3.0.0

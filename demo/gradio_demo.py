@@ -16,8 +16,8 @@
 """Gradio demo for RAON model loaded locally via RaonPipeline.
 
 Usage:
-    python demo/gradio_demo.py --model /path/to/raon-model
-    python demo/gradio_demo.py --model KRAFTON/Raon-Speech-9B --hf-token <TOKEN>
+    python demo/gradio_demo.py --model-path /path/to/raon-model
+    python demo/gradio_demo.py --model-path KRAFTON/Raon-Speech-9B --hf-token <TOKEN>
 """
 
 from __future__ import annotations
@@ -406,7 +406,7 @@ def build_interface(pipe: RaonPipeline, model_path: str) -> gr.Blocks:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="RAON Gradio demo (local model)")
     parser.add_argument(
-        "--model",
+        "--model-path",
         default="KRAFTON/Raon-Speech-9B",
         help="Local model path or HuggingFace model ID (default: KRAFTON/Raon-Speech-9B)",
     )
@@ -442,13 +442,13 @@ def main() -> None:
     if args.hf_token:
         login(token=args.hf_token)
 
-    _ensure_hub_code(args.model)
+    _ensure_hub_code(args.model_path)
 
-    print(f"Loading RaonPipeline from: {args.model} ...")
-    pipe = RaonPipeline(args.model, device=args.device, dtype=args.dtype, config=args.config)
+    print(f"Loading RaonPipeline from: {args.model_path} ...")
+    pipe = RaonPipeline(args.model_path, device=args.device, dtype=args.dtype, config=args.config)
     print("Pipeline ready.\n")
 
-    demo = build_interface(pipe, args.model)
+    demo = build_interface(pipe, args.model_path)
     demo.launch(server_name=args.host, server_port=args.port, share=args.share)
 
 

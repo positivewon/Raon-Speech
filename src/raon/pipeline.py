@@ -48,7 +48,7 @@ class RaonPipeline:
     """High-level inference API for RAON speech LLM.
 
     Loads the model and processor once, and exposes task-specific methods for
-    STT, TTS, TextQA, SpeechChat, and text generation.
+    STT, TTS, TextQA, and Speech-Chat.
 
     Example::
 
@@ -401,7 +401,7 @@ class RaonPipeline:
         return waveform[:length], self.processor.sampling_rate
 
     def speech_chat(self, audio: str) -> str:
-        """SpeechChat: audio → text.
+        """Speech-Chat: audio → text.
 
         Args:
             audio: Path to the audio file containing the spoken question.
