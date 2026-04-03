@@ -27,7 +27,7 @@ dependencies = [
     "tensorboard",
     "torch",
     "torchaudio",
-    "transformers>=4.57.1",
+    "transformers>=4.57.1,<5.0",
     "tqdm",
     "ipykernel>=7.0.1",
     "datasets>=3.0.0",
