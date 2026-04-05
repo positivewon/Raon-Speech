@@ -140,13 +140,12 @@ from transformers.dynamic_module_utils import get_class_from_dynamic_module
 
 MODEL_ID = "KRAFTON/Raon-Speech-9B"
 
-_cfg = AutoConfig.from_pretrained(MODEL_ID, trust_remote_code=True)
+config = AutoConfig.from_pretrained(MODEL_ID, trust_remote_code=True)
 RaonPipeline = get_class_from_dynamic_module(
     "modeling_raon.RaonPipeline",
     MODEL_ID,
-    revision=getattr(_cfg, "_commit_hash", None),
+    revision=getattr(config, "_commit_hash", None),
 )
-del _cfg
 
 pipe = RaonPipeline(MODEL_ID, device="cuda", dtype="bfloat16")
 ```
@@ -163,8 +162,8 @@ Not supported as-is:
 ```bash
 git clone https://github.com/krafton-ai/Raon-Speech
 cd Raon-Speech
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
 ```
